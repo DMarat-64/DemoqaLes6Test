@@ -1,6 +1,7 @@
 package tests;
 
 import org.junit.jupiter.api.Test;
+import pages.DemoqaLes6Page;
 
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selectors.byText;
@@ -8,50 +9,52 @@ import static com.codeborne.selenide.Selenide.*;
 
 public class DemoqaLes6WithPageObjectsTests extends TestBase {
 
+    DemoqaLes6Page registrationPage = new DemoqaLes6Page();
 
     @Test
     void fillFormTest() {
-        open("/automation-practice-form");
+        registrationPage.openPage()
         //ФИ=почта+пол+тел
-        $("#firstName").setValue("Max");
-        $("#lastName").setValue("Jons");
-        $("#userEmail").setValue("max@jons.com");
-        $("#genterWrapper").$(byText("Male")).click();
-        $("#userNumber").setValue("1234567890");
+                         .setFirstName("Max")
+                         .setLastName("Jons")
+                         .setEmail("max@jons.com")
+                         .setgenter("Male")
+                         .setuserNumber("1234567890")
 
-        //Д/р
-        $("#dateOfBirthInput").click();
-        $(".react-datepicker__year-select").selectOption("1980");
-        $(".react-datepicker__month-select").selectOption("August");
-        $$(".react-datepicker__day").findBy(text("14")).click();
+
+         //Д/р
+                .setDateOfBirth("14", "August","1980")
 
         //Должность
-        $("#subjectsInput").setValue("Biology").pressEnter();
+                .setSubjects("Biology")
 
         //Увлечение
-        $("#hobbiesWrapper").$(byText("Sports")).click();
+                .setHobbiesWrapper("Sports")
 
         //Загрузка картинки
-        $("#uploadPicture").uploadFromClasspath("2025-04-24_13-53-15.png");
+                .setUploadPicture("2025-04-24_13-53-15.png")
 
         //Текущий адресс
-        $("#currentAddress").setValue("Baker Street 1");
+                .setuCurrentAddress("Baker Street 1")
 
         //Штат и город
-        $("#react-select-3-input").setValue("Haryana").pressEnter();
-        $("#react-select-4-input").setValue("Karnal").pressEnter();
+                .setState("Haryana")
+                .setCity("Karnal")
 
-        $("#submit").click();
+                .setSubmit();
 
-        $(".table-responsive").$(byText("Student Name")).parent().shouldHave(text("Max Jons"));
-        $(".table-responsive").$(byText("Gender")).parent().shouldHave(text("Male"));
-        $(".table-responsive").$(byText("Mobile")).parent().shouldHave(text("1234567890"));
-        $(".table-responsive").$(byText("Date of Birth")).parent().shouldHave(text("14 August,1980"));
-        $(".table-responsive").$(byText("Subjects")).parent().shouldHave(text("Biology"));
-        $(".table-responsive").$(byText("Hobbies")).parent().shouldHave(text("Sports"));
-        $(".table-responsive").$(byText("Picture")).parent().shouldHave(text("2025-04-24_13-53-15.png"));
-        $(".table-responsive").$(byText("Address")).parent().shouldHave(text("Baker Street 1"));
-        $(".table-responsive").$(byText("State and City")).parent().shouldHave(text("Haryana Karnal"));
+        //Проверки
+        registrationPage.checkResult("Student Name", "Max Jons")
+                        .checkResult("Student Email", "max@jons.com")
+                        .checkResult("Gender", "Male")
+                        .checkResult("Mobile", "1234567890")
+                        .checkResult("Date of Birth", "14 August,1980")
+                        .checkResult("Subjects", "Biology")
+                        .checkResult("Hobbies", "Sports")
+                        .checkResult("Picture", "2025-04-24_13-53-15.png")
+                        .checkResult("Address", "Baker Street 1")
+                        .checkResult("State and City", "Haryana Karnal");
+
     }
 
 }
