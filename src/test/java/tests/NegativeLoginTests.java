@@ -1,21 +1,23 @@
 package tests;
 
 import org.junit.jupiter.api.Test;
-import pages.DemoqaLes6Page;
+import pages.AuthorizationFormPage;
+import pages.components.VerificationResult;
 
 public class NegativeLoginTests extends TestBase {
 
-    DemoqaLes6Page registrationPage = new DemoqaLes6Page();
+    AuthorizationFormPage registrationPage = new AuthorizationFormPage();
+    VerificationResult verificationresult = new VerificationResult();
 
     @Test
     void negativeLoginTest () {
         registrationPage.openPage()
-                //ФИ=почта+пол+тел
+                //ФИ+почта+пол - без телефона
                 .setFirstName("Max")
                 .setLastName("Jons")
-                .setEmail("maxjonscom")
+                .setEmail("max@jons.com")
                 .setgenter("Male")
-                .setuserNumber("1234567890")
+                .setuserNumber("")
 
                 //Д/р
                 .setDateOfBirth("14", "August","1980")
@@ -29,8 +31,9 @@ public class NegativeLoginTests extends TestBase {
                 .setSubmit();
 
         //Проверки
-        registrationPage.checkResult("Student Name", "Max Jons")
-                .checkResult("Student Email", "maxjonscom")
+        verificationresult.notsuccessfullyCompletedCase()
+                .checkResult("Student Name", "Max Jons")
+                .checkResult("Student Email", "max@jons.com")
                 .checkResult("Gender", "Male")
                 .checkResult("Mobile", "1234567890")
                 .checkResult("Date of Birth", "14 August,1980")

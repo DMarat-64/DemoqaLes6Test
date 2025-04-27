@@ -8,7 +8,7 @@ import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
 
-public class DemoqaLes6Page {
+public class AuthorizationFormPage {
 
     private SelenideElement firstNameInput = $("#firstName"),
                             lastNameInput = $("#lastName"),
@@ -27,79 +27,79 @@ public class DemoqaLes6Page {
     CalendarComponent calendarComponent = new CalendarComponent();
 
 
-    public DemoqaLes6Page openPage () {
+    public AuthorizationFormPage openPage () {
         open("/automation-practice-form");
 
         return this;
     }
-    public DemoqaLes6Page setFirstName (String value) {
+    public AuthorizationFormPage setFirstName (String value) {
         firstNameInput.setValue(value);
 
         return this;
     }
-    public DemoqaLes6Page setLastName (String value) {
+    public AuthorizationFormPage setLastName (String value) {
         lastNameInput.setValue(value);
 
         return this;
     }
-    public DemoqaLes6Page setEmail (String value) {
+    public AuthorizationFormPage setEmail (String value) {
         userEmailInput.setValue(value);
 
         return this;
     }
-    public DemoqaLes6Page setgenter (String value) {
+    public AuthorizationFormPage setgenter (String value) {
         genterWrapperInput.$(byText(value)).click();
 
         return this;
     }
-    public DemoqaLes6Page setuserNumber (String value) {
+    public AuthorizationFormPage setuserNumber (String value) {
         userNumberInput.setValue(value);
 
         return this;
     }
-    public DemoqaLes6Page setDateOfBirth(String day, String month, String year) {
+    public AuthorizationFormPage setDateOfBirth(String day, String month, String year) {
         calendarInput.click();
         calendarComponent.setDate(day, month, year);
 
         return this;
     }
-    public DemoqaLes6Page setSubjects (String value) {
+    public AuthorizationFormPage setSubjects (String value) {
         subjectsInput.setValue(value).pressEnter();
 
         return this;
     }
-    public DemoqaLes6Page setHobbiesWrapper (String value) {
+    public AuthorizationFormPage setHobbiesWrapper (String value) {
         hobbiesWrapperInput.$(byText(value)).click();
 
         return this;
     }
-    public DemoqaLes6Page setUploadPicture (String fileName) {
+    public AuthorizationFormPage setUploadPicture (String fileName) {
         uploadPictureInput.uploadFromClasspath("2025-04-24_13-53-15.png");
 
         return this;
     }
-    public DemoqaLes6Page setuCurrentAddress (String value) {
+    public AuthorizationFormPage setuCurrentAddress (String value) {
          currentAddressInput.setValue(value);
 
         return this;
     }
-    public DemoqaLes6Page setState (String value) {
+    public AuthorizationFormPage setState (String value) {
         StateInput.setValue(value).pressEnter();
 
         return this;
     }
-    public DemoqaLes6Page setCity (String value) {
+    public AuthorizationFormPage setCity (String value) {
         CityInput.setValue(value).pressEnter();
 
         return this;
     }
-    public DemoqaLes6Page setSubmit () {
+    public AuthorizationFormPage setSubmit () {
         submitClosed.click();
 
         return this;
     }
     //Проверки
-    public DemoqaLes6Page checkResult(String key, String value) {
+    public AuthorizationFormPage checkResult(String key, String value) {
         $(".table-responsive").$(byText(key)).parent()
                 .shouldHave(text(value));
 

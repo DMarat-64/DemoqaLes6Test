@@ -1,16 +1,18 @@
 package tests;
 
 import org.junit.jupiter.api.Test;
-import pages.DemoqaLes6Page;
+import pages.AuthorizationFormPage;
+import pages.components.VerificationResult;
 
 public class RequiredFieldsLes6Test extends TestBase{
 
-    DemoqaLes6Page registrationPage = new DemoqaLes6Page();
+    AuthorizationFormPage registrationPage = new AuthorizationFormPage();
+    VerificationResult verificationresult = new VerificationResult();
 
     @Test
     void fillFormRequiredFieldsTest () {
         registrationPage.openPage()
-        //ФИ=почта+пол+тел
+        //ФИ+почта+пол+тел
                          .setFirstName("Max")
                          .setLastName("Jons")
                          .setEmail("max@jons.com")
@@ -29,7 +31,8 @@ public class RequiredFieldsLes6Test extends TestBase{
                 .setSubmit();
 
         //Проверки
-        registrationPage.checkResult("Student Name", "Max Jons")
+        verificationresult.successfullyCompletedCase()
+                .checkResult("Student Name", "Max Jons")
                 .checkResult("Student Email", "max@jons.com")
                 .checkResult("Gender", "Male")
                 .checkResult("Mobile", "1234567890")
