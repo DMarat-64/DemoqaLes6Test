@@ -12,19 +12,15 @@ public class RequiredFieldsLes6Test extends TestBase{
     @Test
     void fillFormRequiredFieldsTest () {
         completionForms.openPage()
-        //ФИ+почта+пол+тел
-                         .setFirstName("Max")
-                         .setLastName("Jons")
-                         .setEmail("max@jons.com")
-                         .setGender("Male")
-                         .setUserNumber("1234567890")
-        //Д/р
-               .setDateOfBirth("14", "August","1980")
-        //Увлечение
-               .setHobbiesWrapper("Sports")
-        //Текущий адресс
-                .setCurrentAddress("Baker Street 1")
-                .clickSubmit();
+                       .setFirstName("Max")
+                       .setLastName("Jons")
+                       .setEmail("max@jons.com")
+                       .setGender("Male")
+                       .setUserNumber("1234567890")
+                       .setDateOfBirth("14", "August","1980")
+                       .setHobbiesWrapper("Sports")
+                       .setCurrentAddress("Baker Street 1")
+                       .clickSubmit();
         //Проверки
         resultTableComponent.successfullyCompletedCase()
                 .checkResult("Student Name", "Max Jons")

@@ -1,6 +1,7 @@
 package pages;
 
 import com.codeborne.selenide.SelenideElement;
+import helpers.ActionsHelperAds;
 import pages.components.CalendarComponent;
 
 import static com.codeborne.selenide.Selectors.byText;
@@ -24,10 +25,12 @@ public class CompletionFormsPage {
                             submitClosed = $("#submit");
 
     CalendarComponent calendarComponent = new CalendarComponent();
+    ActionsHelperAds actionsHelperAds = new ActionsHelperAds();
 
 
     public CompletionFormsPage openPage () {
         open("/automation-practice-form");
+        actionsHelperAds.removeBanner();
 
         return this;
     }

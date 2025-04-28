@@ -12,18 +12,14 @@ public class NegativeLoginTests extends TestBase {
     @Test
     void negativeLoginTest () {
         completionForms.openPage()
-        //ФИ+почта+пол - без телефона
-                .setFirstName("Max")
-                .setLastName("Jons")
-                .setEmail("max@jons.com")
-                .setGender("Male")
-        //Д/р
-                .setDateOfBirth("14", "August","1980")
-                //Увлечение
-                .setHobbiesWrapper("Sports")
-        //Текущий адресс
-                .setCurrentAddress("Baker Street 1")
-                .clickSubmit();
+                       .setFirstName("Max")
+                       .setLastName("Jons")
+                       .setEmail("max@jons.com")
+                       .setGender("Male")
+                       .setDateOfBirth("14", "August","1980")
+                       .setHobbiesWrapper("Sports")
+                       .setCurrentAddress("Baker Street 1")
+                       .clickSubmit();
         //Проверки
         resultTableComponent.notsuccessfullyCompletedCase()
                 .checkResult("Student Name", "Max Jons")

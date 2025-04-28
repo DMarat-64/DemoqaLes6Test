@@ -12,26 +12,19 @@ public class DemoqaLes6WithPageObjectsTests extends TestBase {
     @Test
     void fillFormTest() {
         completionForms.openPage()
-        //ФИ+почта+пол+тел
-                         .setFirstName("Max")
-                         .setLastName("Jons")
-                         .setEmail("max@jons.com")
-                         .setGender("Male")
-                         .setUserNumber("1234567890")
-        //Д/р
-                .setDateOfBirth("14", "August","1980")
-        //Должность
-                .setSubjects("Biology")
-        //Увлечение
-                .setHobbiesWrapper("Sports")
-        //Загрузка картинки
-                .setUploadPicture("2025-04-24_13-53-15.png")
-        //Текущий адресс
-                .setCurrentAddress("Baker Street 1")
-        //Штат и город
-                .setState("Haryana")
-                .setCity("Karnal")
-                .clickSubmit();
+                        .setFirstName("Max")
+                        .setLastName("Jons")
+                        .setEmail("max@jons.com")
+                        .setGender("Male")
+                        .setUserNumber("1234567890")
+                        .setDateOfBirth("14", "August","1980")
+                        .setSubjects("Biology")
+                        .setHobbiesWrapper("Sports")
+                        .setUploadPicture("2025-04-24_13-53-15.png")
+                        .setCurrentAddress("Baker Street 1")
+                        .setState("Haryana")
+                        .setCity("Karnal")
+                        .clickSubmit();
         //Проверки
         resultTableComponent.successfullyCompletedCase()
                         .checkResult("Student Name", "Max Jons")
