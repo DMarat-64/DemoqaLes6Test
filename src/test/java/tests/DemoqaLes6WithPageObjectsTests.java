@@ -1,48 +1,39 @@
 package tests;
 
 import org.junit.jupiter.api.Test;
-import pages.AuthorizationFormPage;
-import pages.components.VerificationResult;
+import pages.CompletionFormsPage;
+import pages.components.ResultTableComponent;
 
 public class DemoqaLes6WithPageObjectsTests extends TestBase {
 
-    AuthorizationFormPage registrationPage = new AuthorizationFormPage();
-    VerificationResult verificationresult = new VerificationResult();
+    CompletionFormsPage completionForms = new CompletionFormsPage();
+    ResultTableComponent resultTableComponent = new ResultTableComponent();
 
     @Test
     void fillFormTest() {
-        registrationPage.openPage()
+        completionForms.openPage()
         //ФИ+почта+пол+тел
                          .setFirstName("Max")
                          .setLastName("Jons")
                          .setEmail("max@jons.com")
-                         .setgenter("Male")
-                         .setuserNumber("1234567890")
-
-
-         //Д/р
+                         .setGender("Male")
+                         .setUserNumber("1234567890")
+        //Д/р
                 .setDateOfBirth("14", "August","1980")
-
         //Должность
                 .setSubjects("Biology")
-
         //Увлечение
                 .setHobbiesWrapper("Sports")
-
         //Загрузка картинки
                 .setUploadPicture("2025-04-24_13-53-15.png")
-
         //Текущий адресс
-                .setuCurrentAddress("Baker Street 1")
-
+                .setCurrentAddress("Baker Street 1")
         //Штат и город
                 .setState("Haryana")
                 .setCity("Karnal")
-
-                .setSubmit();
-
+                .clickSubmit();
         //Проверки
-        verificationresult.successfullyCompletedCase()
+        resultTableComponent.successfullyCompletedCase()
                         .checkResult("Student Name", "Max Jons")
                         .checkResult("Student Email", "max@jons.com")
                         .checkResult("Gender", "Male")
@@ -53,7 +44,6 @@ public class DemoqaLes6WithPageObjectsTests extends TestBase {
                         .checkResult("Picture", "2025-04-24_13-53-15.png")
                         .checkResult("Address", "Baker Street 1")
                         .checkResult("State and City", "Haryana Karnal");
-
     }
 
 }

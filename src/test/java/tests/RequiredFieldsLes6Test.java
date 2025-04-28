@@ -1,37 +1,32 @@
 package tests;
 
 import org.junit.jupiter.api.Test;
-import pages.AuthorizationFormPage;
-import pages.components.VerificationResult;
+import pages.CompletionFormsPage;
+import pages.components.ResultTableComponent;
 
 public class RequiredFieldsLes6Test extends TestBase{
 
-    AuthorizationFormPage registrationPage = new AuthorizationFormPage();
-    VerificationResult verificationresult = new VerificationResult();
+    CompletionFormsPage completionForms = new CompletionFormsPage();
+    ResultTableComponent resultTableComponent = new ResultTableComponent();
 
     @Test
     void fillFormRequiredFieldsTest () {
-        registrationPage.openPage()
+        completionForms.openPage()
         //ФИ+почта+пол+тел
                          .setFirstName("Max")
                          .setLastName("Jons")
                          .setEmail("max@jons.com")
-                         .setgenter("Male")
-                         .setuserNumber("1234567890")
-
+                         .setGender("Male")
+                         .setUserNumber("1234567890")
         //Д/р
                .setDateOfBirth("14", "August","1980")
-
         //Увлечение
                .setHobbiesWrapper("Sports")
-
         //Текущий адресс
-                .setuCurrentAddress("Baker Street 1")
-
-                .setSubmit();
-
+                .setCurrentAddress("Baker Street 1")
+                .clickSubmit();
         //Проверки
-        verificationresult.successfullyCompletedCase()
+        resultTableComponent.successfullyCompletedCase()
                 .checkResult("Student Name", "Max Jons")
                 .checkResult("Student Email", "max@jons.com")
                 .checkResult("Gender", "Male")
@@ -39,10 +34,6 @@ public class RequiredFieldsLes6Test extends TestBase{
                 .checkResult("Date of Birth", "14 August,1980")
                 .checkResult("Hobbies", "Sports")
                 .checkResult("Address", "Baker Street 1");
-
-
-
-
     }
 
 }

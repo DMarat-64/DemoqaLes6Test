@@ -1,41 +1,34 @@
 package tests;
 
 import org.junit.jupiter.api.Test;
-import pages.AuthorizationFormPage;
-import pages.components.VerificationResult;
+import pages.CompletionFormsPage;
+import pages.components.ResultTableComponent;
 
 public class NegativeLoginTests extends TestBase {
 
-    AuthorizationFormPage registrationPage = new AuthorizationFormPage();
-    VerificationResult verificationresult = new VerificationResult();
+    CompletionFormsPage completionForms = new CompletionFormsPage();
+    ResultTableComponent resultTableComponent = new ResultTableComponent();
 
     @Test
     void negativeLoginTest () {
-        registrationPage.openPage()
-                //ФИ+почта+пол - без телефона
+        completionForms.openPage()
+        //ФИ+почта+пол - без телефона
                 .setFirstName("Max")
                 .setLastName("Jons")
                 .setEmail("max@jons.com")
-                .setgenter("Male")
-                .setuserNumber("")
-
-                //Д/р
+                .setGender("Male")
+        //Д/р
                 .setDateOfBirth("14", "August","1980")
-
                 //Увлечение
                 .setHobbiesWrapper("Sports")
-
-                //Текущий адресс
-                .setuCurrentAddress("Baker Street 1")
-
-                .setSubmit();
-
+        //Текущий адресс
+                .setCurrentAddress("Baker Street 1")
+                .clickSubmit();
         //Проверки
-        verificationresult.notsuccessfullyCompletedCase()
+        resultTableComponent.notsuccessfullyCompletedCase()
                 .checkResult("Student Name", "Max Jons")
                 .checkResult("Student Email", "max@jons.com")
                 .checkResult("Gender", "Male")
-                .checkResult("Mobile", "1234567890")
                 .checkResult("Date of Birth", "14 August,1980")
                 .checkResult("Hobbies", "Sports")
                 .checkResult("Address", "Baker Street 1");
